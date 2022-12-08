@@ -1,8 +1,11 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import Image from 'next/image';
+import useAuth from '../hooks/UseAuth';
+import styles from '../styles/Home.module.css';
 
 export default function Home() {
+  useAuth();
+
   return (
     <div className={styles.container}>
       <Head>
@@ -67,5 +70,5 @@ export default function Home() {
         </a>
       </footer>
     </div>
-  )
+  );
 }
