@@ -1,0 +1,3 @@
+export const ERROR_CODES = {
+  INVALID_SESSION_ID: 'INVALID_SESSION_ID',
+};

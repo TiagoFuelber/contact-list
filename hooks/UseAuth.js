@@ -6,6 +6,10 @@ import hashToObj from '../utils/hasToObj';
 const useAuth = () => {
   const { asPath, push } = useRouter();
 
+  const redoLogin = () => {
+    AuthService.redoLogin();
+  };
+
   const doLogin = () => {
     AuthService.login();
   };
@@ -17,13 +21,14 @@ const useAuth = () => {
     } else if (hash) {
       const auth = hashToObj(hash);
       if (auth.refresh_token) {
-        AuthService.setLoggedIn(auth.refresh_token);
+        AuthService.setRefreshToken(auth.refresh_token);
+        AuthService.setAccessToken(auth.access_token);
         push('/');
       }
     }
   }, [asPath, push]);
 
-  return null;
+  return { redoLogin };
 };
 
 export default useAuth;
