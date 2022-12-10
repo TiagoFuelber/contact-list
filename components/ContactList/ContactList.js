@@ -8,8 +8,8 @@ const ContactList = () => {
   const { contactList } = useContext(ContactListContext);
 
   useEffect(() => {
-    getContactList();
-  }, [getContactList]);
+    if (!contactList.length) getContactList();
+  }, [contactList]);
 
   return (
     <ul>

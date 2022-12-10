@@ -4,6 +4,7 @@ import { ContactListContext } from '../context/contactList';
 import * as ContactListService from '../services/ContactListService';
 import useAuth from './useAuth';
 import { useSnackBarContext } from './useSnackBar';
+import * as AuthService from '../services/AuthService';
 
 const useContactList = () => {
   const { setContactList } = useContext(ContactListContext);
@@ -11,6 +12,11 @@ const useContactList = () => {
   const { createSnackBar } = useSnackBarContext();
 
   const getContactList = async () => {
+    if (!AuthService.isLoggedIn()) {
+      redoLogin();
+      return;
+    }
+
     try {
       const { records } = await ContactListService.getList();
       const list = records.map((record) => ({

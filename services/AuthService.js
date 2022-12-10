@@ -13,7 +13,7 @@ const login = () => {
 };
 
 const isLoggedIn = () => {
-  return !!sessionStorage.getItem(KEYS.REFESH_TOKEN);
+  return sessionStorage.getItem(KEYS.REFESH_TOKEN) !== null;
 };
 
 const setRefreshToken = (refresh_token) =>
